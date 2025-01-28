@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear veliiii 💖</title>
+    <style>
+        :root {
+            --primary: #F72C5B;
+            --secondary: #FF748B;
+            --accent: #A7D477;
+            --background: #E4F1AC;
+            --highlight: #E73879;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary), var(--highlight));
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .apology-container {
+            text-align: center;
+            max-width: 90vw;
+            position: relative;
+            z-index: 2;
+        }
+
+        .apology-text {
+            color: var(--background);
+            font-size: 2em;
+            text-shadow: 2px 2px var(--secondary);
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+
+        .media-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+
+        #apology-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        #personal-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s ease;
+        }
+
+        .button-container {
+            position: relative;
+            margin-top: 30px;
+            min-height: 60px;
+        }
+
+        #accept {
+            position: relative;
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 3;
+        }
+
+        #reject {
+            position: absolute;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            z-index: 4;
+            pointer-events: auto;
+        }
+
+        .show {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+        }
+
+        @media (max-width: 768px) {
+            .apology-text {
+                font-size: 1.5em;
+            }
+            .media-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            animation: confetti-fall 3s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="apology-container">
+        <h1 class="apology-text">please velii apna mood theek karlo apna kuchupucho samjh kar maaf kardo🐹</h1>
+        
+        <div class="media-container">
+            <img id="apology-gif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3MzbGRuMXJqMTk3MmFuNGNyeGgxcTVraDV5bjMwZ3hzbXpvcm02NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CXkNEsYZE8B6GPhQWE/giphy.gif" alt="Apology GIF">
+            <img id="personal-photo" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDBmb3JrenY2M3doMTMwOWozeGF5a3FldjM4aWs1OHZmajhia2FubyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Our Happy Memory">
+        </div>
+
+        <div class="button-container">
+            <button id="accept" onclick="acceptApology()">please 🐹🥺💐</button>
+            <button id="reject">no 😭😢</button>
+        </div>
+    </div>
+
+    <audio id="happy-music" src="HAPPY_MUSIC_URL"></audio>
+
+    <script>
+        function acceptApology() {
+            // Show personal photo
+            document.getElementById('personal-photo').classList.add('show');
+            
+            // Play happy music
+            const music = document.getElementById('happy-music');
+            music.volume = 0.5;
+            music.play();
+            
+            // Create confetti
+            createConfetti();
+            
+            // Hide reject button
+            document.getElementById('reject').style.display = 'none';
+            
+            // Change accept button text
+            document.getElementById('accept').innerHTML = "Yay! You're the Best! 💖";
+        }
+
+        function createConfetti() {
+            const colors = ['#F72C5B', '#A7D477', '#FF748B', '#E73879'];
+            for(let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Enhanced reject button behavior
+        const rejectBtn = document.getElementById('reject');
+        let isAnimating = false;
+
+        // Move button when cursor approaches
+        document.addEventListener('mousemove', (e) => {
+            if (isAnimating) return;
+
+            const btnRect = rejectBtn.getBoundingClientRect();
+            const btnCenter = {
+                x: btnRect.left + btnRect.width/2,
+                y: btnRect.top + btnRect.height/2
+            };
+            
+            const distance = Math.hypot(
+                e.clientX - btnCenter.x,
+                e.clientY - btnCenter.y
+            );
+            
+            if (distance < 100) {
+                isAnimating = true;
+                const direction = {
+                    x: e.clientX - btnCenter.x,
+                    y: e.clientY - btnCenter.y
+                };
+                
+                // Calculate new position in opposite direction
+                const angle = Math.atan2(direction.y, direction.x);
+                const moveDistance = 150;
+                const newX = Math.cos(angle + Math.PI) * moveDistance;
+                const newY = Math.sin(angle + Math.PI) * moveDistance;
+
+                rejectBtn.style.transform = `translate(calc(-50% + ${newX}px), ${newY}px)`;
+                
+                // Return to original position
+                setTimeout(() => {
+                    rejectBtn.style.transform = 'translateX(-50%)';
+                    isAnimating = false;
+                }, 500);
+            }
+        });
+
+        // Random movement every few seconds
+        setInterval(() => {
+            if (!isAnimating) {
+                const x = (Math.random() - 0.5) * 50;
+                const y = (Math.random() - 0.5) * 30;
+                rejectBtn.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
+                setTimeout(() => {
+                    rejectBtn.style.transform = 'translateX(-50%)';
+                }, 1000);
+            }
+        }, 3000);
+
+        // Prevent clicking on reject button
+        rejectBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
